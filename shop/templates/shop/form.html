@@ -1,0 +1,12 @@
+{% extends 'shop/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<section class="panel auth-panel">
+    <h1>{{ title }}</h1>
+    <p class="muted">Используйте только вымышленные данные.</p>
+    <form method="post" class="form-stack">
+        {% csrf_token %}{{ form.as_div }}
+        <button class="button" type="submit">{{ action }}</button>
+    </form>
+</section>
+{% endblock %}

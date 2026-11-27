@@ -1,0 +1,20 @@
+{% extends 'shop/base.html' %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<h1>Профиль</h1>
+<div class="panel">
+    <p>Вы вошли как <strong>{{ user.get_username }}</strong>{% if user.get_full_name %} · {{ user.get_full_name }}{% endif %}.</p>
+    <div class="chip-row"><a class="button outline" href="{% url 'shop:profile_edit' %}">Редактировать</a><a class="button outline" href="{% url 'shop:password_change' %}">Изменить пароль</a></div>
+</div>
+<h2>История заказов</h2>
+{% if orders %}
+<div class="panel table-wrap">
+    <table>
+        <thead><tr><th scope="col">Заказ</th><th scope="col">Дата</th><th scope="col">Статус</th><th scope="col">Сумма</th></tr></thead>
+        <tbody>{% for order in orders %}
+            <tr><td><a href="{% url 'shop:order_detail' order.pk %}">№{{ order.pk }}</a></td><td>{{ order.created_at|date:'d.m.Y' }}</td><td>{{ order.get_status_display }}</td><td>{{ order.total|floatformat:"2g" }} ₽</td></tr>
+        {% endfor %}</tbody>
+    </table>
+</div>
+{% else %}<p class="notice">У вас пока нет заказов.</p>{% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+{% block title %}Корзина{% endblock %}
+{% block content %}
+<h1>Корзина</h1>
+{% if lines %}
+<div class="panel table-wrap">
+    <table>
+        <thead><tr><th scope="col">Товар</th><th scope="col">Цена за ед.</th><th scope="col">Количество</th><th scope="col">Сумма</th></tr></thead>
+        <tbody>
+        {% for line in lines %}
+        <tr>
+            <td><a href="{{ line.product.get_absolute_url }}">{{ line.product.name }}</a><br><small>{{ line.product.article }}</small></td>
+            <td>{{ line.product.cart_price|floatformat:"2g" }} ₽ / {{ line.product.cart_unit }}</td>
+            <td><div class="quantity-row">
+                <form method="post" action="{% url 'shop:cart_update' line.product.pk %}">
+                    {% csrf_token %}
+                    <input type="number" name="quantity" min="1" max="99" value="{{ line.quantity }}" required aria-label="Количество: {{ line.product.name }}">
+                    <button class="button outline compact">Обновить</button>
+                </form>
+                <form method="post" action="{% url 'shop:cart_update' line.product.pk %}">
+                    {% csrf_token %}<input type="hidden" name="quantity" value="0">
+                    <button class="link-button" aria-label="Убрать {{ line.product.name }}">Убрать</button>
+                </form>
+            </div></td>
+            <td>{{ line.total|floatformat:"2g" }} ₽</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="summary">
+    <p>Итого: <strong>{{ total|floatformat:"2g" }} ₽</strong></p>
+    <a class="button" href="{% url 'shop:checkout' %}">Оформить демо-заказ</a>
+</div>
+{% else %}
+    <p class="notice">Корзина пуста.</p>
+    <a class="button" href="{% url 'shop:product_list' %}">Перейти в каталог</a>
+{% endif %}
+{% endblock %}

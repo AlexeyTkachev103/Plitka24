@@ -1,0 +1,3 @@
+article,name,manufacturer,collection,kind,material,surface,color,size,pack_units,pack_m2,price,price_unit,swatch,is_accessory,on_sale
+EX001,Плитка Лунный песок,Выставочная студия,Луна,Напольная,Керамогранит,Матовая,Песочный,60 × 60,4,1.440,1950.00,m2,sand,0,0
+EX002,Затирка Мягкая тень,Выставочная студия,,Затирка,Цемент,,Графитовый,,,,520.00,piece,grout,1,0

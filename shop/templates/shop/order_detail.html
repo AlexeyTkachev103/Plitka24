@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+{% block title %}Заказ №{{ order.pk }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{% url 'shop:profile' %}">История заказов</a> / №{{ order.pk }}</p>
+<h1>Заказ №{{ order.pk }}</h1>
+<p class="muted">{{ order.created_at|date:'d.m.Y' }} · {{ order.get_status_display }}</p>
+{% if order.comments %}<p>Комментарий: {{ order.comments }}</p>{% endif %}
+<div class="panel table-wrap">
+    <table>
+        <thead><tr><th scope="col">Товар</th><th scope="col">Цена за ед.</th><th scope="col">Количество</th><th scope="col">Сумма</th></tr></thead>
+        <tbody>{% for item in order.items.all %}
+            <tr><td>{{ item.product_name }}<br><small>{{ item.article }}</small></td><td>{{ item.unit_price|floatformat:"2g" }} ₽ / {{ item.unit }}</td><td>{{ item.quantity }}</td><td>{{ item.total|floatformat:"2g" }} ₽</td></tr>
+        {% endfor %}</tbody>
+    </table>
+</div>
+<p class="summary">Итого: <strong>{{ order.total|floatformat:"2g" }} ₽</strong></p>
+{% endblock %}

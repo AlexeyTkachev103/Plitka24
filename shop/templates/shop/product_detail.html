@@ -1,0 +1,25 @@
+{% extends 'shop/base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+<p class="breadcrumb"><a href="{% url 'shop:product_list' %}">Каталог</a> / {{ product.article }}</p>
+<article class="product-detail">
+    <img class="detail-image" src="{{ product.image_url }}" alt="Иллюстрация фактуры: {{ product.name }}" width="620" height="440">
+    <div class="detail-copy">
+        <p class="eyebrow">{{ product.manufacturer }}{% if product.collection %} · {{ product.collection }}{% endif %}</p>
+        <h1>{{ product.name }}</h1>
+        {% if product.on_sale %}<p class="inline-tag">Распродажа</p>{% endif %}
+        <dl class="specs">
+            <div><dt>Артикул</dt><dd>{{ product.article }}</dd></div>
+            <div><dt>Назначение</dt><dd>{{ product.kind }}</dd></div>
+            {% if product.size %}<div><dt>Размер, см</dt><dd>{{ product.size }}</dd></div>{% endif %}
+            {% if product.material %}<div><dt>Материал</dt><dd>{{ product.material }}</dd></div>{% endif %}
+            {% if product.surface %}<div><dt>Поверхность</dt><dd>{{ product.surface }}</dd></div>{% endif %}
+            {% if product.color %}<div><dt>Цвет</dt><dd>{{ product.color }}</dd></div>{% endif %}
+            {% if product.pack_units or product.pack_m2 %}<div><dt>Упаковка</dt><dd>{% if product.pack_units %}{{ product.pack_units }} шт.{% endif %}{% if product.pack_m2 %} ({{ product.pack_m2|floatformat:-3 }} м²){% endif %}</dd></div>{% endif %}
+        </dl>
+        <p class="price">{{ product.price|floatformat:"2g" }} ₽ <small>/ {{ product.get_price_unit_display }}</small></p>
+        {% if product.cart_unit != product.get_price_unit_display %}<p class="muted">В корзине: {{ product.cart_price|floatformat:"2g" }} ₽ за упаковку</p>{% endif %}
+        {% include 'shop/add_to_cart.html' %}
+    </div>
+</article>
+{% endblock %}

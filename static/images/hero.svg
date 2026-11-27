@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" width="720" height="440">
+  <defs>
+    <linearGradient id="wall" x2=".9" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#f2e0ca"/><stop offset="1" stop-color="#a47b63"/></linearGradient>
+    <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#ae7457"/><stop offset="1" stop-color="#5f392d"/></linearGradient>
+    <linearGradient id="stone" x2=".3" y2="1"><stop stop-color="#f4dcbd"/><stop offset="1" stop-color="#c29371"/></linearGradient>
+    <linearGradient id="glass" x2=".9" y2="1"><stop stop-color="#e8e8d1"/><stop offset="1" stop-color="#b1a59b"/></linearGradient>
+    <pattern id="small" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#d2c8b1"/>
+      <rect x="1" y="1" width="18" height="18" rx="1" fill="#526d63"/><rect x="21" y="1" width="18" height="18" rx="1" fill="#60796c"/>
+      <rect x="1" y="21" width="18" height="18" rx="1" fill="#6c8375"/><rect x="21" y="21" width="18" height="18" rx="1" fill="#49645e"/>
+      <path d="M3 3h14M23 3h14M3 23h14M23 23h14" stroke="#c7d2ac" opacity=".25"/>
+    </pattern>
+    <pattern id="large" width="168" height="102" patternUnits="userSpaceOnUse"><path d="M168 0H0v102" fill="none" stroke="#8c694f" stroke-width="2" opacity=".27"/><path d="M14 61q40-22 83-6t66-12" fill="none" stroke="#fcf3dc" opacity=".35"/></pattern>
+    <clipPath id="arch"><path d="M414 353V148a113 113 0 1 1 226 0v205z"/></clipPath>
+    <linearGradient id="shine" x2="1" y2="1"><stop stop-color="#fff3c7" stop-opacity=".64"/><stop offset="1" stop-color="#fff3c7" stop-opacity="0"/></linearGradient>
+  </defs>
+  <path fill="url(#wall)" d="M0 0h720v440H0z"/>
+  <path fill="url(#large)" d="M0 0h720v364H0z"/>
+  <path fill="#8e6b56" d="M0 356h720v84H0z"/>
+  <path d="M0 389h720M90 440l133-84m93 84 45-84m180 84-62-84m208 84-101-84" stroke="#d2b195" stroke-width="2" opacity=".46"/>
+  <path fill="#7a5546" opacity=".31" d="M428 356V148a119 119 0 1 1 238 0v208z"/>
+  <path fill="url(#small)" d="M414 353V148a113 113 0 1 1 226 0v205z"/>
+  <g clip-path="url(#arch)"><path fill="#2b3b32" opacity=".18" d="M636 0h84v359H565z"/><path fill="url(#shine)" d="M421 26 583 4 536 292l-114 61z"/></g>
+  <rect x="177" y="60" width="161" height="180" rx="77" fill="#71513e" opacity=".35"/>
+  <rect x="170" y="52" width="161" height="180" rx="77" fill="#433c35"/>
+  <rect x="174" y="56" width="153" height="172" rx="73" fill="url(#glass)"/>
+  <path fill="#f6e9cd" opacity=".34" d="M191 197 255 56q20 2 34 13l-67 153q-19-7-31-25z"/>
+  <ellipse cx="288" cy="407" rx="196" ry="15" fill="#392b24" opacity=".29"/>
+  <path fill="url(#wood)" d="M116 291h324v101H116z"/>
+  <path fill="#5d3c2f" d="M116 383h324v8H116z"/>
+  <path d="M126 300h304M126 341h304m-154-48v91" stroke="#402c23" opacity=".37"/>
+  <path d="M175 318h41m100 0h45m-186 43h41m100 0h45" stroke="#e0b17e" stroke-width="3" stroke-linecap="round"/>
+  <path fill="url(#stone)" d="m102 285 24-10h294l34 10v11H102z"/>
+  <path d="M226 257q6 21 26 22h49q24-2 31-22z" fill="#efdfce"/>
+  <ellipse cx="279" cy="255" rx="53" ry="8" fill="#fcf2dd"/>
+  <ellipse cx="279" cy="255" rx="41" ry="4" fill="#baa38e"/>
+  <path d="M287 252v-22q0-15 11-15t11 13h-11" fill="none" stroke="#816846" stroke-width="5" stroke-linecap="round"/>
+  <path d="M0 6 189 0 323 364 199 440H65z" fill="url(#shine)"/>
+  <path fill="#7c513f" d="M535 338h54l-7 49h-39z"/><path fill="#ae7558" d="M530 335h64v10h-64z"/>
+  <path d="M561 337q-3-58-39-85m38 85q14-68 46-85m-44 84q-16-40-37-44" fill="none" stroke="#496455" stroke-width="3" stroke-linecap="round"/>
+  <path d="M548 287q-36-8-38-41 32 8 38 41m5 30q-33-1-44-26 30 0 44 26m13-6q10-35 43-38-10 28-43 38m10-26q-1-28 20-39 5 26-20 39" fill="#748675"/>
+</svg>

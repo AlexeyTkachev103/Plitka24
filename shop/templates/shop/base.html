@@ -1,0 +1,50 @@
+{% load static %}<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{% block title %}Каталог плитки{% endblock %} · Плитка24</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/logo.svg' %}">
+    <link rel="stylesheet" href="{% static 'shop.css' %}">
+    <script src="{% static 'shop.js' %}" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#content">Перейти к содержанию</a>
+<div class="demo-bar">ПОРТФОЛИО · ДЕМОНСТРАЦИОННЫЙ МАГАЗИН БЕЗ ОПЛАТЫ И ДОСТАВКИ</div>
+<header class="site-header">
+    <div class="container header-row">
+        <a class="logo" href="{% url 'shop:product_list' %}">
+            <img src="{% static 'images/logo.svg' %}" alt="" width="36" height="36">
+            <span><strong>Плитка24</strong><small>КЕРАМИКА И МОЗАИКА</small></span>
+        </a>
+        <form class="search" method="get" action="{% url 'shop:product_list' %}">
+            <label class="sr-only" for="search">Поиск по названию или артикулу</label>
+            <input id="search" type="search" name="q" value="{{ term|default:'' }}" maxlength="120" placeholder="Поиск по названию или артикулу">
+            <button type="submit" aria-label="Найти"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></svg></button>
+        </form>
+        <div class="header-links">
+            {% if user.is_authenticated %}
+                <a href="{% url 'shop:profile' %}">Профиль</a>
+                <form action="{% url 'shop:logout' %}" method="post" class="inline-form">{% csrf_token %}<button class="link-button">Выйти</button></form>
+            {% else %}
+                <a href="{% url 'shop:login' %}">Войти</a>
+            {% endif %}
+            <a class="cart-link" href="{% url 'shop:cart_detail' %}">Корзина <span class="count" id="cart-count">{{ cart_count }}</span></a>
+        </div>
+    </div>
+    <nav class="container sections" aria-label="Разделы магазина">
+        <a href="{% url 'shop:product_list' %}" {% if request.resolver_match.url_name == 'product_list' %}aria-current="page"{% endif %}>Каталог</a>
+        <a href="{% url 'shop:tile_page' %}" {% if request.resolver_match.url_name == 'tile_page' %}aria-current="page"{% endif %}>Плитка</a>
+        <a href="{% url 'shop:collections_page' %}" {% if request.resolver_match.url_name == 'collections_page' %}aria-current="page"{% endif %}>Коллекции</a>
+        <a href="{% url 'shop:accessories_page' %}" {% if request.resolver_match.url_name == 'accessories_page' %}aria-current="page"{% endif %}>Аксессуары</a>
+        <a href="{% url 'shop:sale_page' %}" {% if request.resolver_match.url_name == 'sale_page' %}aria-current="page"{% endif %}>Распродажа</a>
+    </nav>
+</header>
+<main id="content" class="container main-content">
+    {% for message in messages %}<p class="notice {{ message.tags }}" role="status">{{ message }}</p>{% endfor %}
+    {% block content %}{% endblock %}
+</main>
+<footer class="site-footer"><div class="container footer-row"><strong>Плитка24</strong><span>Учебный каталог · Цены, марки и товары вымышлены</span></div></footer>
+</body>
+</html>

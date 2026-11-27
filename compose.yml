@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    init: true
+    ports:
+      - "127.0.0.1:${PLITKA24_PORT:-8000}:8000"
+    volumes:
+      - demo-data:/var/lib/plitka24
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8000/healthz/', timeout=2).close()"]
+      interval: 5s
+      timeout: 3s
+      start_period: 10s
+      retries: 10
+
+volumes:
+  demo-data:

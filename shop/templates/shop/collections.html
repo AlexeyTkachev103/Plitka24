@@ -1,0 +1,19 @@
+{% extends 'shop/base.html' %}
+{% block title %}Коллекции{% endblock %}
+{% block content %}
+<p class="eyebrow">КАТАЛОГ ПО СЕРИЯМ</p>
+<h1>Коллекции плитки</h1>
+<div class="product-grid collections-grid">
+    {% for group in groups %}
+    <article class="product-card">
+        <a class="card-image" href="{% url 'shop:product_list' %}?brand={{ group.manufacturer|urlencode }}&amp;collection={{ group.collection|urlencode }}" aria-label="{{ group.collection }}">
+            <img src="{{ group.image }}" alt="" width="620" height="440" loading="lazy">
+        </a>
+        <div class="card-content">
+            <p class="muted">{{ group.manufacturer }} · Товаров: {{ group.count }}</p>
+            <h2><a href="{% url 'shop:product_list' %}?brand={{ group.manufacturer|urlencode }}&amp;collection={{ group.collection|urlencode }}">{{ group.collection }}</a></h2>
+        </div>
+    </article>
+    {% empty %}<p>Пока коллекций нет.</p>{% endfor %}
+</div>
+{% endblock %}

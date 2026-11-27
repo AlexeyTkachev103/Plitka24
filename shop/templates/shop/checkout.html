@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+{% block title %}Оформление заказа{% endblock %}
+{% block content %}
+<h1>Оформление демо-заказа</h1>
+<div class="guide">
+    <div class="panel">
+        <p class="notice">Это демонстрация. Вводите только вымышленные данные. Оплата, доставка и отправка писем отключены.</p>
+        <form method="post" class="form-stack">
+            {% csrf_token %}{{ form.as_div }}
+            <button class="button" type="submit">Создать заказ</button>
+        </form>
+    </div>
+    <section class="panel" aria-labelledby="order-summary">
+        <h2 id="order-summary">Состав заказа</h2>
+        <ul class="checkout-list">
+            {% for line in lines %}<li>{{ line.product.name }} × {{ line.quantity }} <strong>{{ line.total|floatformat:"2g" }} ₽</strong></li>{% endfor %}
+        </ul>
+        <p class="summary">Итого: <strong>{{ total|floatformat:"2g" }} ₽</strong></p>
+    </section>
+</div>
+{% endblock %}

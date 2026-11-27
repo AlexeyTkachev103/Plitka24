@@ -1,0 +1,13 @@
+{% extends 'shop/base.html' %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+<section class="panel auth-panel">
+    <h1>Вход</h1>
+    <form method="post" class="form-stack">
+        {% csrf_token %}{{ form.as_div }}
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+        <button class="button" type="submit">Войти</button>
+    </form>
+    <p>Впервые здесь? <a href="{% url 'shop:register' %}">Создать демо-аккаунт</a></p>
+</section>
+{% endblock %}

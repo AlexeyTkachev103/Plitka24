@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Как выбрать плитку{% endblock %}
+{% block content %}
+<div class="guide">
+    <div>
+        <p class="eyebrow">СОВЕТЫ ПО ВЫБОРУ</p>
+        <h1>Как выбрать плитку</h1>
+        <ol>
+            <li>Рассчитайте площадь: измерьте длину и ширину комнаты, умножьте значения и добавьте 10–15&nbsp;% запаса на подрезку.</li>
+            <li>Учтите назначение: настенная, напольная или мозаика — каждая категория создана для своей задачи.</li>
+            <li>Выберите стиль и фактуру: цвет, рисунок и размер плитки влияют на восприятие пространства.</li>
+        </ol>
+    </div>
+    <img class="detail-image" src="{% static 'images/hero.svg' %}" alt="Иллюстрация интерьера с керамикой" width="720" height="440">
+</div>
+<h2>Плитка по назначению</h2>
+<div class="chip-row">
+    {% for kind in kinds %}<a class="button outline" href="{% url 'shop:product_list' %}?kind={{ kind|urlencode }}">{{ kind }}</a>{% endfor %}
+</div>
+{% endblock %}

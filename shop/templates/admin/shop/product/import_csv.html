@@ -1,0 +1,12 @@
+{% extends 'admin/base_site.html' %}
+{% block breadcrumbs %}
+<div class="breadcrumbs"><a href="{% url 'admin:index' %}">Главная</a> › <a href="{% url 'admin:shop_product_changelist' %}">Товары</a> › Импорт CSV</div>
+{% endblock %}
+{% block content %}
+<p>Используйте <code>examples/products.csv</code> из репозитория как образец. Строки с существующим артикулом обновляют товар.</p>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Импортировать">
+</form>
+{% endblock %}

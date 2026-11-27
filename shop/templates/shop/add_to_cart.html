@@ -1,0 +1,6 @@
+<form method="post" action="{% url 'shop:cart_update' product.id %}" data-cart-add>
+    {% csrf_token %}
+    <input type="hidden" name="action" value="add">
+    <button class="button outline" type="submit">В корзину</button>
+    <span class="form-status sr-only" role="status"></span>
+</form>
